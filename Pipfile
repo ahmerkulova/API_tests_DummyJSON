@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 pytest = "*"
 requests = "*"
+allure-pytest = "*"
+cerberus = "*"
+assertpy = "*"
 
 [dev-packages]
 
