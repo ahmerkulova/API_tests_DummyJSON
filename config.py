@@ -1,2 +1,2 @@
 BASE_URL = 'https://dummyjson.com/todos/'
-todo_id = '150'
+TODO_DEFAULT_ID = '150'
