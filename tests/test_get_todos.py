@@ -1,22 +1,31 @@
 from assertpy import assert_that
 
 from main.dummy_todos import DummyTodos
-from tests.data.schemas import *
+from main.help_functions import *
+from tests.data.schemas import schema_todo_id
 
 todos = DummyTodos()
 
 
 def test_get_all_todos():
     response = todos.get_all_todos()
+    assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
-def test_get_todo_by_id():
-    response = todos.get_todo_by_id()
+def test_all_todos_elements_total_is_correct(correct_total=150):
+    response = todos.get_all_todos()
+    all_todos = json.loads(response.text)
+    assert_that(all_todos).has_total(correct_total)
+
+
+def test_get_todo_by_id(id='13'):
+    response = todos.get_todo_by_id(id)
+    assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
 def test_todo_by_id_has_expected_schema():
-    response = todos.get_todo_by_id()
-    is_valid, errors = todos.validate_json_schema(response, todo_id_schema)
+    response = todos.get_todo_by_id(todos.id)
+    is_valid, errors = validate_json_schema(response, schema_todo_id)
     assert_that(is_valid).described_as(errors).is_true()
