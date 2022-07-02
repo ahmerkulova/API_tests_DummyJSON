@@ -8,7 +8,7 @@ from config import TODOS_TOTAL
 todos = DummyTodos()
 
 
-def test_todo_can_be_created():
+def test_guest_can_create_todo():
     response = todos.create_todo()
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)

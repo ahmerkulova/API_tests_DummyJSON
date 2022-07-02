@@ -3,23 +3,24 @@ from assertpy import assert_that
 from main.dummy_todos import DummyTodos
 from main.help_functions import *
 from tests.data.schemas import schema_todo_id
+from config import TODOS_TOTAL
 
 todos = DummyTodos()
 
 
-def test_get_all_todos():
+def test_guest_can_get_all_todos():
     response = todos.get_all_todos()
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
-def test_all_todos_elements_total_is_correct(correct_total=150):
+def test_all_todos_total_is_correct(correct_total=TODOS_TOTAL):
     response = todos.get_all_todos()
     all_todos = json.loads(response.text)
     assert_that(all_todos).has_total(correct_total)
 
 
-def test_get_todo_by_id(id='13'):
+def test_guest_can_get_todo_by_id(id='13'):
     response = todos.get_todo_by_id(id)
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
