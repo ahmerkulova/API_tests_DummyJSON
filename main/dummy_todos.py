@@ -11,6 +11,10 @@ class DummyTodos:
         self.base_url = BASE_URL
         self.id = TODO_DEFAULT_ID
 
+    def create_todo(self):
+        payload = json.dumps(update_payload)
+        return requests.put(self.base_url + self.id, data=payload, headers=headers)
+
     def get_all_todos(self):
         return requests.get(self.base_url)
 
@@ -22,4 +26,4 @@ class DummyTodos:
         return requests.put(self.base_url + self.id, data=payload, headers=headers)
 
     def delete_todo_by_id(self, id):
-        pass
+        return requests.delete(self.base_url + self.id)

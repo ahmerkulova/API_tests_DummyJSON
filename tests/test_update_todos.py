@@ -7,7 +7,7 @@ from tests.data.payload import *
 todos = DummyTodos()
 
 
-def test_update_todo_by_id():
+def test_todo_can_be_updated_by_id():
     response = todos.update_todo_by_id(id)
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
