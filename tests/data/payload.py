@@ -7,3 +7,13 @@ update_payload = {
      "completed": UPDATE_STATUS,
      "userId": UPDATE_USERID
    }
+
+CREATE_TODO = "Imagine there's no heaven"
+CREATE_STATUS = True
+CREATE_USERID = 12
+
+create_payload = {
+     "todo": CREATE_TODO,
+     "completed": CREATE_STATUS,
+     "userId": CREATE_USERID
+   }
