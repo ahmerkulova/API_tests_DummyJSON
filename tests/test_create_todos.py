@@ -28,3 +28,20 @@ def test_created_todo_has_unique_id(payload=create_payload, unique_id=TODOS_TOTA
     response = todos.create_todo(deserialized(payload))
     body = serialized(response)
     assert_that(body).has_id(unique_id)
+
+
+@pytest.mark.negative
+@pytest.mark.parametrize('payload', (empty_payload, payload_wo_userId))
+def test_guest_cant_create_todo_without_userId(payload):
+    response = todos.create_todo(deserialized(payload))
+    body = serialized(response)
+    assert_that(response.status_code).is_equal_to(400)
+    assert_that(body).has_message('User id is required')
+
+
+@pytest.mark.negative
+def test_guest_cant_create_todo_with_incorrect_userId_type(payload=payload_incorrect_userId):
+    response = todos.create_todo(deserialized(payload))
+    body = serialized(response)
+    assert_that(response.status_code).is_equal_to(400)
+    assert_that(body).contains_value(f"Invalid user id '{CREATE_INVALID_USERID}'")
