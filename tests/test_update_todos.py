@@ -17,7 +17,7 @@ def test_guest_can_update_todo_by_id():
 @pytest.mark.smoke
 def test_all_updated_fields_are_correct():
     response = todos.update_todo_by_id(id)
-    body = json.loads(response.text)
+    body = serialized(response)
     assert_that(body).has_todo(UPDATE_TODO)
     assert_that(body).has_completed(UPDATE_STATUS)
     assert_that(body).has_userId(UPDATE_USERID)

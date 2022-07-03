@@ -11,8 +11,7 @@ class DummyTodos:
         self.base_url = BASE_URL
         self.id = TODO_DEFAULT_ID
 
-    def create_todo(self):
-        payload = json.dumps(create_payload)
+    def create_todo(self, payload):
         return requests.post(self.base_url + 'add', data=payload, headers=headers)
 
     def get_all_todos(self):

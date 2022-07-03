@@ -17,7 +17,7 @@ def test_guest_can_get_all_todos():
 
 def test_all_todos_total_is_correct(correct_total=TODOS_TOTAL):
     response = todos.get_all_todos()
-    all_todos = json.loads(response.text)
+    all_todos = serialized(response)
     assert_that(all_todos).has_total(correct_total)
 
 
