@@ -8,13 +8,15 @@ from config import TODOS_TOTAL
 todos = DummyTodos()
 
 
+@pytest.mark.smoke
 def test_guest_can_create_todo():
     response = todos.create_todo()
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
-def test_created_todo_has_correct_attributes():
+@pytest.mark.smoke
+def test_created_todo_has_expected_fields():
     response = todos.create_todo()
     body = json.loads(response.text)
     assert_that(body).has_todo(CREATE_TODO)

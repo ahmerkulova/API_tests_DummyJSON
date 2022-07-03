@@ -8,6 +8,7 @@ from config import TODOS_TOTAL
 todos = DummyTodos()
 
 
+@pytest.mark.smoke
 def test_guest_can_get_all_todos():
     response = todos.get_all_todos()
     assert_that(response.text).is_not_empty()
@@ -20,6 +21,7 @@ def test_all_todos_total_is_correct(correct_total=TODOS_TOTAL):
     assert_that(all_todos).has_total(correct_total)
 
 
+@pytest.mark.smoke
 def test_guest_can_get_todo_by_id(id='13'):
     response = todos.get_todo_by_id(id)
     assert_that(response.text).is_not_empty()

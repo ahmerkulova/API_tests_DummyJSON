@@ -1,3 +1,4 @@
+import pytest
 import json
 from cerberus import Validator
 

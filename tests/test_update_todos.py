@@ -7,12 +7,14 @@ from tests.data.payload import *
 todos = DummyTodos()
 
 
+@pytest.mark.smoke
 def test_guest_can_update_todo_by_id():
     response = todos.update_todo_by_id(id)
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
+@pytest.mark.smoke
 def test_all_updated_fields_are_correct():
     response = todos.update_todo_by_id(id)
     body = json.loads(response.text)
