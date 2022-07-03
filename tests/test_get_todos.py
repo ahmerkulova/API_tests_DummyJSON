@@ -3,7 +3,7 @@ from assertpy import assert_that
 from main.dummy_todos import DummyTodos
 from main.help_functions import *
 from tests.data.schemas import schema_todo_id
-from config import TODOS_TOTAL
+from config import TODOS_TOTAL, TODO_ID
 
 todos = DummyTodos()
 
@@ -22,13 +22,13 @@ def test_all_todos_total_is_correct(correct_total=TODOS_TOTAL):
 
 
 @pytest.mark.smoke
-def test_guest_can_get_todo_by_id(id='13'):
+def test_guest_can_get_todo_by_id(id=TODO_ID):
     response = todos.get_todo_by_id(id)
     assert_that(response.text).is_not_empty()
     assert_that(response.status_code).is_equal_to(200)
 
 
-def test_todo_by_id_has_expected_schema():
-    response = todos.get_todo_by_id(todos.id)
+def test_todo_by_id_has_expected_schema(id=TODO_ID):
+    response = todos.get_todo_by_id(id)
     is_valid, errors = validate_json_schema(response, schema_todo_id)
     assert_that(is_valid).described_as(errors).is_true()
