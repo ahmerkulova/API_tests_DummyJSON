@@ -9,6 +9,7 @@ requests = "*"
 allure-pytest = "*"
 cerberus = "*"
 assertpy = "*"
+pytest-xdist = "*"
 
 [dev-packages]
 

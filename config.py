@@ -1,3 +1,3 @@
 BASE_URL = 'https://dummyjson.com/todos/'
-TODO_ID = '100'
-TODOS_TOTAL = 150
+TODOS_RANGE = [1, 150]
+TODOS_INVALID_TYPE = ['True', '3.14']

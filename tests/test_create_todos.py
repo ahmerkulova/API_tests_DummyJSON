@@ -1,9 +1,10 @@
+import pytest
 from assertpy import assert_that
 
 from main.dummy_todos import DummyTodos
 from main.help_functions import *
 from tests.data.payload import *
-from config import TODOS_TOTAL
+from config import TODOS_RANGE
 
 todos = DummyTodos()
 
@@ -24,7 +25,7 @@ def test_created_todo_has_expected_fields(payload=create_payload):
     assert_that(body).has_userId(CREATE_USERID)
 
 
-def test_created_todo_has_unique_id(payload=create_payload, unique_id=TODOS_TOTAL + 1):
+def test_created_todo_has_unique_id(payload=create_payload, unique_id=max(TODOS_RANGE) + 1):
     response = todos.create_todo(deserialized(payload))
     body = serialized(response)
     assert_that(body).has_id(unique_id)

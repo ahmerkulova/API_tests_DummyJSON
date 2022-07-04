@@ -1,8 +1,6 @@
 import requests
-import json
 
 from config import BASE_URL
-from tests.data.payload import update_payload, create_payload
 from tests.data.headers import headers
 
 
