@@ -37,7 +37,11 @@ pytest -v --tb=line tests/test_create_todos.py::test_guest_can_create_todo
 ```
 - To run tests with a certain mark (example):
 ```
-pytest -v --tb=line -m smoke
+pytest -vm smoke
+```
+- To run all tests in parallel (fastest way):
+```
+pytest -v -n auto
 ```
 User marks are specified in pytest.ini
 
