@@ -39,3 +39,8 @@ payload_incorrect_userId = {
     "todo": CREATE_TODO,
     "userId": CREATE_INVALID_USERID
 }
+
+auth_payload = {
+    "username": "kminchelle",
+    "password": "0lelplR"
+}
